@@ -52,7 +52,8 @@ CREATE TABLE @achillesResultsDbName.achilles_analysis (
 );
 
 
-ALTER TABLE @achillesResultsDbName.achilles_analysis OWNER TO ohdsi_admin_user;
+-- ALTER TABLE @achillesResultsDbName.achilles_analysis OWNER TO ohdsi_admin_user;
+ALTER TABLE @achillesResultsDbName.achilles_analysis OWNER TO postgres;
 
 --
 -- Name: achilles_results; Type: TABLE; Schema: @achillesResultsDbName; Owner: ohdsi_admin_user
@@ -69,7 +70,9 @@ CREATE TABLE @achillesResultsDbName.achilles_results (
 );
 
 
-ALTER TABLE @achillesResultsDbName.achilles_results OWNER TO ohdsi_admin_user;
+-- ALTER TABLE @achillesResultsDbName.achilles_results OWNER TO ohdsi_admin_user;
+ALTER TABLE @achillesResultsDbName.achilles_results OWNER TO postgres;
+
 
 --
 -- Name: achilles_results_dist; Type: TABLE; Schema: @achillesResultsDbName; Owner: ohdsi_admin_user
@@ -95,7 +98,8 @@ CREATE TABLE @achillesResultsDbName.achilles_results_dist (
 );
 
 
-ALTER TABLE @achillesResultsDbName.achilles_results_dist OWNER TO ohdsi_admin_user;
+-- ALTER TABLE @achillesResultsDbName.achilles_results_dist OWNER TO ohdsi_admin_user;
+ALTER TABLE @achillesResultsDbName.achilles_results_dist OWNER TO postgres;
 
 --
 -- Name: cc_results; Type: TABLE; Schema: @achillesResultsDbName; Owner: postgres

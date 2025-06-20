@@ -35,7 +35,7 @@ public class A05_CreateAchillesDatabases {
 
 	private static void createDatabase(String databaseName, Connection conn) {
 		log.info("Creating database: " + databaseName);
-		Database.update("drop schema if exists " + databaseName, conn);
+		Database.update("drop schema if exists " + databaseName + " cascade", conn);
 		Database.update("create schema " + databaseName, conn);
 	}
 

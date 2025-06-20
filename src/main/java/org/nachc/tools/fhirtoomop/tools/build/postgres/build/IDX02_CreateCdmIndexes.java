@@ -42,7 +42,7 @@ public class IDX02_CreateCdmIndexes {
 		timer.start();
 		log.info("Got connection...");
 		log.info("Running script...");
-		String dbName = AppParams.getDatabaseName();
+		String dbName = AppParams.getFullySpecifiedCdmSchemaName();
 		log.info("DB NAME: " + dbName);
 		String sqlString = SQL;
 		sqlString = sqlString.replace("@cdmDatabaseSchema", dbName);
