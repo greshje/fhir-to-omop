@@ -20,16 +20,21 @@ public class A06_CreateAchillesTables {
 	}
 
 	public static void exec() {
-		log.info("Creating Achilles tables.");
 		Connection conn = PostgresDatabaseConnectionFactory.getCdmConnection();
 		try {
-			log.info("getting sql script...");
-			log.info("executing script...");
-			String sqlString = getSqlString();
-			Database.executeSqlScript(sqlString, conn);
+			exec(conn);
 		} finally {
 			Database.close(conn);
 		}
+
+	}
+
+	public static void exec(Connection conn) {
+		log.info("Creating Achilles tables.");
+		log.info("getting sql script...");
+		log.info("executing script...");
+		String sqlString = getSqlString();
+		Database.executeSqlScript(sqlString, conn);
 		log.info("Done creating Achilles tables.");
 	}
 

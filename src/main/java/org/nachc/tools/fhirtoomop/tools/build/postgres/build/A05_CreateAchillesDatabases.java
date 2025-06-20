@@ -16,17 +16,20 @@ public class A05_CreateAchillesDatabases {
 	}
 
 	public static void exec() {
-		log.info("Done creating Achilles databases.");
 		Connection conn = PostgresDatabaseConnectionFactory.getCdmConnection();
 		try {
-			String achillesResDbName = AppParams.getFullySpecifiedAchillesResultsSchemaName();
-			String achillesTempDbName = AppParams.getFullySpecifiedAchillesTempSchemaName();
-			createDatabase(achillesResDbName, conn);
-			createDatabase(achillesTempDbName, conn);
-			Database.commit(conn);
+			exec(conn);
 		} finally {
 			Database.close(conn);
 		}
+	}
+
+	public static void exec(Connection conn) {
+		String achillesResDbName = AppParams.getFullySpecifiedAchillesResultsSchemaName();
+		String achillesTempDbName = AppParams.getFullySpecifiedAchillesTempSchemaName();
+		createDatabase(achillesResDbName, conn);
+		createDatabase(achillesTempDbName, conn);
+		Database.commit(conn);
 		log.info("Done creating Achilles databases.");
 	}
 

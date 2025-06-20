@@ -24,15 +24,19 @@ public class A08_CreateAtlasSourceRecordsInWebApi {
 	public static void exec() {
 		Connection conn = PostgresDatabaseConnectionFactory.getCdmConnection();
 		try {
-			String sqlString;
-			// create the new records
-			log.info("getting sql script...");
-			sqlString = getSqlString();
-			log.info("executing script...");
-			Database.executeSqlScript(sqlString, conn);
+			exec(conn);
 		} finally {
 			Database.close(conn);
 		}
+	}
+	
+	public static void exec(Connection conn) {
+		String sqlString;
+		// create the new records
+		log.info("getting sql script...");
+		sqlString = getSqlString();
+		log.info("executing script...");
+		Database.executeSqlScript(sqlString, conn);
 		log.info("Done creating data source.");
 	}
 	
