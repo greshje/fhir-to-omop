@@ -59,6 +59,8 @@ public class CdmTablesForPostgres {
 		sqlString += "and lower(table_type) = lower('BASE TABLE') \n";
 		log.info("sqlString: \n" + sqlString);
 		Data data = Database.query(sqlString, conn);
+		Data currDbData = Database.query("select current_database() as curr", conn);
+		log.info("Current database: " + currDbData.get(0).get("curr"));
 		for (Row row : data) {
 			String tableName = row.get("tableName");
 			if (ignoreList.contains(tableName.toUpperCase()) == false && invertIgnore == false) {

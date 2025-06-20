@@ -24,15 +24,19 @@ public class FHIR05_CreateSequencesForPrimaryKeys {
 	public static void exec() {
 		Connection conn = PostgresDatabaseConnectionFactory.getCdmConnection();
 		try {
-			String dbName = AppParams.getDatabaseName();
-			log.info("Running script...");
-			InputStream is = FileUtil.getInputStream(FILE_NAME);
-			Database.executeSqlScript(is, conn);
-			log.info("Done running script.");
-			log.info("Done creating sequences for primary keys.");
+			exec(conn);
 		} finally {
 			Database.close(conn);
 		}
 	}
 
+	public static void exec(Connection conn) {
+		String dbName = AppParams.getDatabaseName();
+		log.info("Running script...");
+		InputStream is = FileUtil.getInputStream(FILE_NAME);
+		Database.executeSqlScript(is, conn);
+		log.info("Done running script.");
+		log.info("Done creating sequences for primary keys.");
+	}
+	
 }

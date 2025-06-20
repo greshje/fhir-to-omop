@@ -13,7 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IDX03_CreateCdmConstraints {
 
-	private static final String SQL = FileUtil.getAsString("/postgres/build/omop/cdm/OMOPCDM_postgresql_5.4_constraints.sql");
+	private static final String SQL = FileUtil
+			.getAsString("/postgres/build/omop/cdm/OMOPCDM_postgresql_5.4_constraints.sql");
 
 	public static void main(String[] args) {
 		exec();
@@ -24,17 +25,24 @@ public class IDX03_CreateCdmConstraints {
 		Connection conn = PostgresDatabaseConnectionFactory.getCdmConnection();
 		log.info("Got connection...");
 		try {
-			log.info("Running script...");
-			String dbName = AppParams.getDatabaseName();
-			log.info("DB NAME: " + dbName);
-			String sqlString = SQL;
-			sqlString = sqlString.replace("@cdmDatabaseSchema", dbName);
-			log.info("Running script:\n\n" + sqlString + "\n\n");
-			Database.executeSqlScript(sqlString, conn);
-			log.info("Done running script.");
+			exec(conn);
 		} finally {
 			Database.close(conn);
 		}
+		log.info("Done creating CDM database tables.");
+	}
+
+	public static void exec(Connection conn) {
+		log.info("Creating CDM database tables...");
+		log.info("Got connection...");
+		log.info("Running script...");
+		String dbName = AppParams.getDatabaseName();
+		log.info("DB NAME: " + dbName);
+		String sqlString = SQL;
+		sqlString = sqlString.replace("@cdmDatabaseSchema", dbName);
+		log.info("Running script:\n\n" + sqlString + "\n\n");
+		Database.executeSqlScript(sqlString, conn);
+		log.info("Done running script.");
 		log.info("Done creating CDM database tables.");
 	}
 

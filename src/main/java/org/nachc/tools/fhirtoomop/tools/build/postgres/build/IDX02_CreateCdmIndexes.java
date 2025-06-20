@@ -14,7 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IDX02_CreateCdmIndexes {
 
-	private static final String SQL = FileUtil.getAsString("/postgres/build/omop/cdm/OMOPCDM_postgresql_5.4_indices.sql");
+	private static final String SQL = FileUtil
+			.getAsString("/postgres/build/omop/cdm/OMOPCDM_postgresql_5.4_indices.sql");
 
 	public static void main(String[] args) {
 		exec();
@@ -27,17 +28,27 @@ public class IDX02_CreateCdmIndexes {
 		Connection conn = PostgresDatabaseConnectionFactory.getCdmConnection();
 		log.info("Got connection...");
 		try {
-			log.info("Running script...");
-			String dbName = AppParams.getDatabaseName();
-			log.info("DB NAME: " + dbName);
-			String sqlString = SQL;
-			sqlString = sqlString.replace("@cdmDatabaseSchema", dbName);
-			log.info("Running script:\n\n" + sqlString + "\n\n");
-			Database.executeSqlScript(sqlString, conn);
-			log.info("Done running script.");
+			exec(conn);
 		} finally {
 			Database.close(conn);
 		}
+		log.info("TIME TO CREATE INDEXES: " + timer.getElapsedString());
+		log.info("Done creating CDM INDEXES...");
+	}
+
+	public static void exec(Connection conn) {
+		log.info("Creating CDM INDEXES...");
+		Timer timer = new Timer();
+		timer.start();
+		log.info("Got connection...");
+		log.info("Running script...");
+		String dbName = AppParams.getDatabaseName();
+		log.info("DB NAME: " + dbName);
+		String sqlString = SQL;
+		sqlString = sqlString.replace("@cdmDatabaseSchema", dbName);
+		log.info("Running script:\n\n" + sqlString + "\n\n");
+		Database.executeSqlScript(sqlString, conn);
+		log.info("Done running script.");
 		log.info("TIME TO CREATE INDEXES: " + timer.getElapsedString());
 		log.info("Done creating CDM INDEXES...");
 	}
