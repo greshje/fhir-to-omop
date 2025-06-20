@@ -81,6 +81,7 @@ public class RunAchilles {
 	}
 
 	private static void downloadDriver(String pathToDriver) {
+		// TODO: NEED TO IMPLEMENT THIS FOR POSTGRES
 		log.info("Checking for database driver...");
 		DriverType driverType = getDriverType();
 		String url = driverType.getParams().getUrl();
