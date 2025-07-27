@@ -48,6 +48,7 @@ public class A08_CreateAtlasSourceRecordsInWebApi {
 		sqlString = sqlString.replace("<atlasResults>", AppParams.getFullySpecifiedAchillesResultsSchemaName());
 		sqlString = sqlString.replace("<atlasTemp>", AppParams.getFullySpecifiedAchillesTempSchemaName());
 		sqlString = sqlString.replace("<atlasCdmUrl>", AppParams.getAtlasCdmUrl());
+		sqlString = sqlString.replace("<atlasDbms>", AppParams.getDbmsName());
 		return sqlString;
 	}
 	
