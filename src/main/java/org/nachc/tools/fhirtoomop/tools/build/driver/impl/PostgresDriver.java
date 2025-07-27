@@ -6,7 +6,7 @@ public class PostgresDriver implements DriverParameters {
 
 	@Override
 	public String getName() {
-		return "postgresql";
+		return "postgresql_42_3_3";
 	}
 
 	@Override
